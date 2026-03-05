@@ -1,0 +1,180 @@
+### Variables
+
+# Mod key
+set $mod Mod4
+
+# Terminal
+set $term alacritty
+
+# Your preferred application launcher
+set $menu wofi -a --show=drun
+
+# Browser
+set $browser firefox
+
+# File manager
+set $files nemo
+
+### Input configuration
+
+input type:touchpad {
+   dwt enabled
+   tap enabled
+   natural_scroll enabled
+   middle_emulation enabled
+}
+
+input type:keyboard {
+    xkb_layout "us,ru"
+    xkb_options "grp:caps_toggle"
+}
+
+
+### Key bindings
+
+# Start a terminal
+bindsym $mod+Return exec $term
+
+# Kill focused window
+bindsym --to-code $mod+Shift+q kill
+
+# Start your launcher
+bindsym --to-code $mod+d exec $menu
+
+# Browser
+bindsym $mod+F1 exec $browser
+
+# File-manager
+bindsym --to-code $mod+e exec $files
+
+floating_modifier $mod normal
+
+# Reload the configuration file
+bindsym --to-code $mod+Shift+c reload
+
+# Exit sway
+bindsym --to-code $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# Focus windows
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move windows
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Workspaces:
+
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# Horizontal and vertical split
+bindsym --to-code $mod+h splith
+bindsym --to-code $mod+v splitv
+
+# Layout styles
+bindsym --to-code $mod+s layout stacking
+bindsym --to-code $mod+w layout tabbed
+bindsym --to-code $mod+t layout toggle split
+
+# Fullscreen
+bindsym --to-code $mod+f fullscreen
+
+# Toggle floating mode
+bindsym $mod+Shift+space floating toggle
+
+# Toggle focus between modes
+bindsym $mod+space focus mode_toggle
+
+# Parent container
+bindsym --to-code $mod+a focus parent
+
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Resizing containers:
+mode "resize" {
+bindsym Left resize shrink width 10px
+bindsym Down resize grow height 10px
+bindsym Up resize shrink height 10px
+bindsym Right resize grow width 10px
+
+# Return to default mode
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Special keys to adjust volume via PulseAudio
+bindsym $mod+F6 exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+bindsym $mod+F7 exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+bindsym $mod+F8 exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+
+# Special keys to adjust brightness via brightnessctl
+bindsym $mod+F2 exec brightnessctl set 5%-
+bindsym $mod+F3 exec brightnessctl set 5%+
+
+# Special key to take a screenshot with grim
+bindsym Print exec grim
+
+# Polkit
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# mouse focus
+focus_follows_mouse no
+
+### Decorations
+
+# wallpaper
+exec swaybg -i ~/images/wallpapers/bsrk.jpg
+
+# GTK theme
+exec_always {
+    gsettings set org.gnome.desktop.interface gtk-theme 'BlackAndWhite'
+    gsettings set org.gnome.desktop.interface icon-theme 'breeze-dark_white'
+}
+
+# gaps
+gaps inner 10
+gaps outer 10
+smart_gaps true
+
+# bordes
+default_border pixel 1
+hide_edge_borders smart
+
+# colors
+client.focused #ffffff #ffffff #ffffff #ffffff
+
+# Status Bar
+bar {
+    swaybar_command waybar
+}
+
+include /etc/sway/config.d/*
