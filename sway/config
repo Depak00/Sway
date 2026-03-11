@@ -143,11 +143,15 @@ bindsym $mod+F3 exec brightnessctl set 5%+
 # Special key to take a screenshot with grim
 bindsym Print exec grim
 
+
+### Autostart
+
 # Polkit
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # mouse focus
 focus_follows_mouse no
+
 
 ### Decorations
 
