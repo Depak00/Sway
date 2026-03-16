@@ -39,7 +39,7 @@ bindsym $mod+Return exec $term
 bindsym --to-code $mod+Shift+q kill
 
 # Start your launcher
-bindsym --to-code $mod+d exec $menu
+bindsym --to-code $mod+d exec "pkill wofi; $menu"
 
 # Browser
 bindsym $mod+F1 exec $browser
@@ -141,7 +141,7 @@ bindsym $mod+F2 exec brightnessctl set 5%-
 bindsym $mod+F3 exec brightnessctl set 5%+
 
 # Special key to take a screenshot with grim
-bindsym Print exec grim
+bindsym $mod+p exec grim
 
 
 ### Autostart
@@ -156,12 +156,13 @@ focus_follows_mouse no
 ### Decorations
 
 # wallpaper
-exec swaybg -i ~/images/wallpapers/bsrk.jpg
+exec swaybg -i ~/images/wallpapers/DaVinci.jpg
 
 # GTK theme
 exec_always {
     gsettings set org.gnome.desktop.interface gtk-theme 'BlackAndWhite'
     gsettings set org.gnome.desktop.interface icon-theme 'breeze-dark_white'
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 }
 
 # gaps

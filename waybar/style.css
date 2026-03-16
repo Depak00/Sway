@@ -1,10 +1,9 @@
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
     font-size: 13px;
 }
 
-#battery, #pulseaudio, #language, #network, #tray, #clock, #backlight, #scratchpad, #backlight {
+#battery, #pulseaudio, #language, #network, #tray, #clock, #backlight, #scratchpad, #backlight, #custom-bluetooth, #custom-power {
     padding-left: 10px;
     padding-right: 10px;
     margin-left: 5;
