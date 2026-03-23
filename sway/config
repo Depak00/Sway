@@ -15,6 +15,8 @@ set $browser firefox
 # File manager
 set $files nemo
 
+
+
 ### Input configuration
 
 input type:touchpad {
@@ -30,6 +32,7 @@ input type:keyboard {
 }
 
 
+
 ### Key bindings
 
 # Start a terminal
@@ -39,7 +42,7 @@ bindsym $mod+Return exec $term
 bindsym --to-code $mod+Shift+q kill
 
 # Start your launcher
-bindsym --to-code $mod+d exec "pkill wofi; $menu"
+bindsym --to-code $mod+d exec "killall wofi; $menu"
 
 # Browser
 bindsym $mod+F1 exec $browser
@@ -79,7 +82,7 @@ bindsym $mod+6 workspace number 6
 bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
-bindsym $mod+0 workspace number 10
+bindsym $mod+0 workspace number 0
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number 1
@@ -91,7 +94,7 @@ bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10
+bindsym $mod+Shift+0 move container to workspace number 0
 
 # Horizontal and vertical split
 bindsym --to-code $mod+h splith
@@ -143,20 +146,30 @@ bindsym $mod+F3 exec brightnessctl set 5%+
 # Special key to take a screenshot with grim
 bindsym $mod+p exec grim
 
+# Workspaces with wofi
+bindsym --to-code $mod+q exec ~/.config/sway/workspaces.sh
+
+
 
 ### Autostart
 
 # Polkit
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-# mouse focus
+# Mouse focus
 focus_follows_mouse no
+
+# Copy/paste
+exec wl-clip-persist --clipboard regular
+
+# Server
+exec sshfs mfedos@192.168.0.102:/home/mfedos ~/remote
 
 
 ### Decorations
 
 # wallpaper
-exec swaybg -i ~/images/wallpapers/DaVinci.jpg
+exec swaybg -i ~/images/wallpapers/pixelarch.png
 
 # GTK theme
 exec_always {
@@ -181,5 +194,8 @@ client.focused #ffffff #ffffff #ffffff #ffffff
 bar {
     swaybar_command waybar
 }
+
+
+
 
 include /etc/sway/config.d/*

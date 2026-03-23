@@ -3,7 +3,7 @@
     font-size: 13px;
 }
 
-#battery, #pulseaudio, #language, #network, #tray, #clock, #backlight, #scratchpad, #backlight, #custom-bluetooth, #custom-power {
+#battery, #pulseaudio, #language, #network, #tray, #clock, #backlight, #scratchpad, #backlight, #custom-bluetooth, #custom-power, #mode {
     padding-left: 10px;
     padding-right: 10px;
     margin-left: 5;
@@ -39,12 +39,6 @@ window#waybar {
 
 #workspaces button.urgent {
     background-color: #ff0000;
-}
-
-#mode {
-    background-color: #000000;
-    color: #ffffff;
-    border: 1px solid #ffffff;
 }
 
 #battery.charging, #battery.plugged {
