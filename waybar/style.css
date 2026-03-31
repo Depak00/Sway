@@ -1,6 +1,6 @@
 * {
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    font-size: 13px
 }
 
 #battery, #pulseaudio, #language, #network, #tray, #clock, #backlight, #scratchpad, #backlight, #custom-bluetooth, #custom-power, #mode {
@@ -26,30 +26,26 @@ window#waybar {
     margin-right: 5;
     min-width: 30px;
     border: 1px solid #ffffff;
-}
-
-#workspaces button:hover {
-    background: rgba(0, 0, 0, 0);
+    border-radius: 0
 }
 
 #workspaces button.focused, #workspaces button.active {
     background-color: #ffffff;
-    color: #000000;
+    color: #000000
 }
 
 #workspaces button.urgent {
-    background-color: #ff0000;
+    background-color: #ff0000
 }
 
 #battery.charging, #battery.plugged {
-    color: #00ff00;
+    color: #00ff00
 }
 
 #battery.critical:not(.charging) {
-    background-color: #cc0000;
-    color: #ffffff;
+    background-color: #ff0000
 }
 
 #scratchpad.empty {
-	background-color: transparent;
+	background-color: transparent
 }
