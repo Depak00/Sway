@@ -39,7 +39,7 @@ input type:keyboard {
 bindsym $mod+Return exec $term
 
 # Kill focused window
-bindsym --to-code $mod+Shift+q kill
+bindsym --to-code $mod+q kill
 
 # Start your launcher
 bindsym --to-code $mod+d exec "killall wofi; $menu"
@@ -82,7 +82,7 @@ bindsym $mod+6 workspace number 6
 bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
-bindsym $mod+0 workspace number 0
+bindsym $mod+0 workspace number 10
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number 1
@@ -94,7 +94,7 @@ bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 0
+bindsym $mod+Shift+0 move container to workspace number 10
 
 # Horizontal and vertical split
 bindsym --to-code $mod+h splith
@@ -144,10 +144,7 @@ bindsym $mod+F2 exec brightnessctl set 5%-
 bindsym $mod+F3 exec brightnessctl set 5%+
 
 # Special key to take a screenshot with grim
-bindsym $mod+p exec grim
-
-# Workspaces with wofi
-bindsym --to-code $mod+q exec ~/.config/sway/workspaces.sh
+bindsym --to-code $mod+p exec grim
 
 
 
@@ -163,20 +160,24 @@ focus_follows_mouse no
 exec wl-clip-persist --clipboard regular
 
 # Server
-exec sshfs mfedos@192.168.0.102:/home/mfedos ~/remote
+exec_always sshfs mfedos@192.168.0.102:/home/mfedos ~/remote
+
+# Autotiling
+exec_always autotiling -l 2
+
+# Display
+exec_always kanshi
+
+# Sleep
+#exec_always swayidle -w \
+#    timeout 300 'foot --fullscreen sh -c "pipes.sh; exec swaymsg fullscreen"' \
+#    resume 'pkill -f "pipes.sh"' \
+#    before-sleep 'pkill -f "pipes.sh"'
+#seat seat0 hide_cursor 300000
+
 
 
 ### Decorations
-
-# wallpaper
-exec swaybg -i ~/images/wallpapers/pixelarch.png
-
-# GTK theme
-exec_always {
-    gsettings set org.gnome.desktop.interface gtk-theme 'BlackAndWhite'
-    gsettings set org.gnome.desktop.interface icon-theme 'breeze-dark_white'
-    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-}
 
 # gaps
 gaps inner 10
@@ -190,6 +191,9 @@ hide_edge_borders smart
 # colors
 client.focused #ffffff #ffffff #ffffff #ffffff
 
+# wallpaper
+exec_always swaybg -i ~/.config/sway/wp1.png
+
 # Status Bar
 bar {
     swaybar_command waybar
@@ -198,4 +202,4 @@ bar {
 
 
 
-include /etc/sway/config.d/*
+include ~/.config/sway/*.conf
